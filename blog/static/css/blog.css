@@ -18,6 +18,11 @@ h1, h2, h3, h4 {
 	font-family: 'Jura', sans-serif;
 }
 
+p {
+	font-family: calibri, sans-serif;
+	font-size: 13pt;
+}
+
 #detailed_post_head {
 	display: inline-block;
 	float: right;
