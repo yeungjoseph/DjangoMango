@@ -23,13 +23,13 @@ p {
 	font-size: 13pt;
 }
 
-#detailed_post_head {
-	display: inline-block;
-	float: right;
-}
-
 .date {
 	color: #828282;
+}
+
+.headers {
+	float: right;
+	clear: both;
 }
 
 .save {
