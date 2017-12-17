@@ -27,6 +27,11 @@ p {
 	color: #828282;
 }
 
+.comment-sm, .comment-sm:hover, .comment-sm:visited {
+	color: #828282;
+	text-decoration: none;
+}
+
 .headers {
 	float: right;
 	clear: both;
@@ -45,6 +50,11 @@ p {
 	float: right;
 	font-size: 26pt;
 	margin-right: 20px;
+	text-decoration: none;
+}
+
+.comment {
+	margin: 20px 0px 25px 20px;
 }
 
 .post {
