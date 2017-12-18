@@ -7,7 +7,11 @@
 			<div class="date">
 				<p>published: {{ post.published_date }}</p>
 			</div>
-			<p>{{ post.text|truncatechars:500|linebreaksbr }}</p>
+			<p>{{ post.text|linebreaksbr|truncatewords:100 }}
+			{% if post|length > 100 %}
+				<a href="{% url 'post_detail' pk=post.pk %}"> Read more</a>
+			{% endif %}
+			</p>
 			<a class="comment-sm" href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
 		</div>
 	{% endfor %}

@@ -21,6 +21,9 @@ class Post(models.Model):
 	def __str__(self):
 		return self.title
 		
+	def __len__(self):
+		return len(self.text.split())
+		
 class Comment(models.Model):
 	post = models.ForeignKey('blog.Post', related_name='comments')
 	author = models.CharField(max_length=200)
