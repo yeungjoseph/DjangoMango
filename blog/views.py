@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.utils import timezone
@@ -62,10 +63,18 @@ def post_remove(request, pk):
 	return redirect('blog:post_list')
 	
 def add_comment_to_post(request, pk):
+	'''
+	This function is called only within blog/post_detail.html.
+	Upon submitting the comment form, the comment will be added
+	to the database, but will not be displayed until a moderator
+	has approved it.
+	'''
 	post = get_object_or_404(Post, pk=pk)
 	form = CommentForm(request.POST)
 	if form.is_valid():
 		comment = form.save(commit=False)
+		if request.user.is_authenticated:
+			comment.author = request.user.username
 		comment.post = post
 		comment.save()
 		return redirect('blog:post_detail', pk=pk, new_comment=True)
