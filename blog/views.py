@@ -12,10 +12,10 @@ def post_list(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	return render(request, 'blog/post_list.html', {'posts': posts})
 	
-def post_detail(request, pk, add_comment=False):		
+def post_detail(request, pk, new_comment=False):		
 	post = get_object_or_404(Post, pk=pk)
 	form = CommentForm()
-	return render(request, 'blog/post_detail.html', {'post': post,'form': form,'comment': add_comment})
+	return render(request, 'blog/post_detail.html', {'post': post,'form': form,'comment': new_comment})
 
 @login_required
 def post_new(request):
@@ -68,7 +68,7 @@ def add_comment_to_post(request, pk):
 		comment = form.save(commit=False)
 		comment.post = post
 		comment.save()
-		return redirect('blog:post_detail', pk=pk)#, add_comment=True)
+		return redirect('blog:post_detail', pk=pk, new_comment=True)
 	
 @login_required
 def comment_approve(request, pk):
