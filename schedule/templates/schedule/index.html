@@ -1,13 +1,40 @@
-{% if list_of_tasks %}
-	<ul>
-	{% for task in list_of_tasks %}
-		<li>{{ task.task_name }}</li>
-		{%if task.due_date %}
-			<p>Finish by: {{ task.due_date }}</p>
-		{% endif %}
-		<p>{{ task.task_text|linebreaks }}</p>
-	{% endfor %}
-	</ul>
-{% else %}
-	<p>No tasks are available.</p>
-{% endif %}
+{% load staticfiles %}
+<html>
+	<head>
+		<title>Joseph's Scheduling App</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Jura" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'schedule/schedule.css' %}">
+	</head>
+	<body>
+		<div class="page-header">
+			{% if user.is_authenticated %}
+				<p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+            {% else %}
+		
+				<a href="{% url 'login' %}" class="top-menu">Login <span class="glyphicon glyphicon-lock"></span></a>
+			{% endif %}
+			<h1><a href="/schedule">Joseph's Scheduling App</a></h1>
+        </div>
+		
+		<div class="content container">
+			<div class="row">
+				<div class="col-md-8">
+					{% if list_of_tasks %}
+						{% for task in list_of_tasks %}
+							<div class="task">
+								<div class="taskname">{{ task.task_name }}</div>
+								{%if task.due_date %}
+									<div class="due-date">Finish by: {{ task.due_date }}</div>
+								{% endif %}
+								<div class="desc">{{ task.task_text|linebreaks }}</div>
+							</div>
+						{% endfor %}
+					{% else %}
+						<p>No tasks are available.</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		

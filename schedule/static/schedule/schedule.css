@@ -1,0 +1,64 @@
+.page-header {
+	background-color: #ff9400;
+	margin-top: 0;
+	padding: 20px 20px 20px 40px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+	color: #ffffff;
+	font-size: 36pt;
+	text-decoration: none;
+}
+
+.content {
+	margin-left: 40px;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Jura', sans-serif;
+}
+
+p {
+	font-family: calibri, sans-serif;
+	font-size: 13pt;
+}
+
+.headers {
+	float: right;
+	clear: both;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+	color: #ffffff;
+	float: right;
+	font-size: 26pt;
+	margin-right: 20px;
+	text-decoration: none;
+}
+
+.task {
+	background-color: #c2c2d6;
+	margin: 10px 0px;
+	padding: 5px 8px;
+	width: 90%;
+}
+
+.taskname {
+	color: #002966;
+	font-family: 'Jura', calibri;
+	font-size: 1.5em;
+	font-weight: 600;
+	float: left;
+}
+
+.due-date {
+	color: #002966;
+	font-family: 'Jura', calibri;
+	font-weight: 700;
+	float: right;
+}
+
+.desc {
+	color: #3d5c5c;
+	clear: both;
+}
