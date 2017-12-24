@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'blog',
 	'schedule',
+	'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    BASE_DIR + '/blog/static',
+	BASE_DIR + 'schedule/static',
+]
+	

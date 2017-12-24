@@ -62,3 +62,7 @@ p {
 	color: #3d5c5c;
 	clear: both;
 }
+
+.new-task {
+	width: 60%;
+}
