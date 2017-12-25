@@ -1,5 +1,4 @@
 {% extends 'schedule/index.html' %}
-{% load widget_tweaks %}
 
 {% block content %}
 	{% if list_of_tasks %}
@@ -25,46 +24,9 @@
 	
 	<br><hr>
 	<h2>New Task</h2>
-	<form action="{% url 'schedule:task_add' %}" method="POST" class="post-form new-task">{% csrf_token %}
-		
-		<!--Expands the {{ form }} so that we have more control over its display-->	
-		{% for hidden_field in form.hidden_fields %}
-			{{ hidden_field }}
-		{% endfor %}
-		
-		{% if form.non_field_errors %}
-			<div class="alert alert-danger" role="alert">
-				{% for error in form.non_field_errors %}
-					{{ error }}
-				{% endfor %}
-			</div>
-		{% endif %}
-		
-		{% for field in form.visible_fields %}
-			<div class="form-group">
-				{{ field.label_tag }}
-				
-				{% if form.is_bound %}
-					{% if field.errors %}
-						{{ field|add_class:'form-control is-invalid' }}
-						{% for error in field.errors %}
-							<div class="invalid-feedback">
-								{{ error }}
-							</div>
-						{% endfor %}
-					{% else %}
-						{{ field|add_class:'form-control is-valid' }}
-					{% endif %}
-				{% else %}
-					{{ field|add_class:'form-control' }}
-				{% endif %}
-				
-				{% if field.help_text %}
-					<small class="form-text text-muted">{{ field.help_text }}</small>
-				{% endif %}
-			</div>
-		{% endfor %}
-		
+	<form action="{% url 'schedule:task_add' %}" method="POST" class="post-form new-task">
+		{% csrf_token %}
+		{% include './includes/bs4_form.html' with form=form %}
 		<button type="submit" class="save btn btn-primary">Add task</button>
 	</form>
 {% endblock %}

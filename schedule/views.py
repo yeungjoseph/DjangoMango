@@ -34,4 +34,13 @@ def task_remove(request, pk):
 
 @login_required
 def task_edit(request, pk):
-	return redirect('schedule:task_list')
+	task = get_object_or_404(Task, pk=pk)
+	if request.method == "POST":
+		form = TaskForm(request.POST, instance=task)
+		if form.is_valid():
+			task = form.save(commit=False)
+			task.save()
+			return redirect('schedule:task_list')
+	else:
+		form = TaskForm(instance=task)
+	return render(request, 'schedule/task_edit.html', {'form': form})
